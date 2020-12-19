@@ -8,6 +8,8 @@ import json
 import time
 
 
+# Example below:
+
 def page_request_pichau():
     URLpichau = 'https://www.pichau.com.br/hardware/placa-de-video/placa-de-video-galax-geforce-rtx-1660-6gb-gddr5-1-click-oc-192-bit-60srh7dsy91c'
 
