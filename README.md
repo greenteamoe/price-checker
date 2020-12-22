@@ -11,6 +11,8 @@ random
 plyer
 re
 time
+
+**OBS: Don't forget to put 'images' folder in the same folder as 'marketplace_notifications.py'**
 ```
 
 ## Built With
