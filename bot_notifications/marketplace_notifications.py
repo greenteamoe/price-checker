@@ -12,6 +12,8 @@ headers = {
         "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.60'
     }
 
+print("made by @greenteamoe\nhttps://github.com/greenteamoe\n\nInitializing price checker bot...\n\n")
+time.sleep(1.2)
 
 def page_request_kabum(url):
     URLkabum = url
@@ -21,7 +23,7 @@ def page_request_kabum(url):
     
     try:
         title = soup.find(id=None, attrs={'titulo_det'}).get_text()
-        converted_title = str(title[0:57])
+        converted_title = str(title[0:59])
         price_a_vista = soup.find(id=None, attrs={'preco_desconto'}).get_text()
         txtstrip_a_vista = price_a_vista.strip()
         converted_price_a_vista = float(txtstrip_a_vista[3:8])
@@ -41,12 +43,10 @@ def page_request_kabum(url):
                 timeout=7
             )
         elif converted_price_a_vista > 1.400 or converted_price_parcelado > 1.700:
-            print(converted_title, "price is not matching")
+            print(converted_title, "[from kabum] price is not matching")
     except:
-        print("{0} from kabum is unavailable (out of stock)".format(title))
+        print("{0} [from kabum] is unavailable (out of stock)".format(converted_title))
         pass
-
-    
 
 
 def page_request_pichau(url):
@@ -74,9 +74,7 @@ def page_request_pichau(url):
                 
             )
         elif converted_price_a_vista > 1.400 or converted_price_parcelado > 1.700:
-            print(converted_title, "price is not matching")
-            #if out_of_stock:
-            #    print("{0} from pichau is unavailable (out of stock)".format(title))
+            print(converted_title, "[from pichau] price is not matching or is out of stock")
     except:
         pass
 
