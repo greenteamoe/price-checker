@@ -2,7 +2,7 @@
 
 Simple work-in-progress price checker made for different marketplaces. Will be editable soon.
 
-### Prerequisites and libraries
+### Prerequisites and libraries if you wanna edit the main file:
 
 ```
 bs4
@@ -11,9 +11,8 @@ random
 plyer
 re
 time
-
-**OBS: Don't forget to put 'images' folder in the same folder as 'marketplace_notifications.py'**
 ```
+**OBS: Don't forget to put 'images' folder in the same folder as 'marketplace_notifications.py'**
 
 ## Built With
 
