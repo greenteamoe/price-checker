@@ -31,7 +31,7 @@ def page_request_kabum(url):
         juros = soup.find(id=None, attrs={'12x'}).get_text()
         txtstrip_juros = juros.strip()
         converted_juros = str(txtstrip_juros[0:41])
-        if converted_price_a_vista > 1.400 or converted_price_parcelado < 1.700:
+        if converted_price_a_vista < 1.400 or converted_price_parcelado < 1.700:
             notification.notify(
                 title=converted_title,
                 message="R${0} à vista\nR${1} parcelado\n\n{2}".format(converted_price_a_vista, converted_price_parcelado,
@@ -41,9 +41,9 @@ def page_request_kabum(url):
                 timeout=7
             )
         elif converted_price_a_vista > 1.400 or converted_price_parcelado > 1.700:
-            print(converted_title, converted_price_parcelado, converted_price_a_vista)
+            print(converted_title, "price is not matching")
     except:
-        print("{0} is unavailable.".format(title))
+        print("{0} from kabum is unavailable (out of stock)".format(title))
         pass
 
     
@@ -54,26 +54,31 @@ def page_request_pichau(url):
 
     page = requests.get(URLpichau, headers=headers)  
     soup = BeautifulSoup(page.content, "lxml")  
+    try:
+        title = soup.find(id=None, attrs={'product title'}).get_text()  
+        converted_title = str(title[0:48])
+        price_a_vista = soup.find(id=None, attrs={'price-boleto'}).get_text()  
+        converted_price_a_vista = float(price_a_vista[11:16])
+        price_parcelado = soup.find(id=None, attrs={'price'}).get_text()
+        converted_price_parcelado = float(price_parcelado[2:7])
+        out_of_stock = soup.find(id=None, attrs={'stock unavailable'}).get_text()
 
-    title = soup.find(id=None, attrs={'product title'}).get_text()  
-    converted_title = str(title[0:48])
-    price_a_vista = soup.find(id=None, attrs={'price-boleto'}).get_text()  
-    converted_price_a_vista = float(price_a_vista[11:16])
-    price_parcelado = soup.find(id=None, attrs={'price'}).get_text()
-    converted_price_parcelado = float(price_parcelado[2:7])
-    # title_price_parcelado = soup.find(id=None, attrs={'price-installments'}).get_text()
-
-    if converted_price_a_vista > 1.400 or converted_price_parcelado < 1.700:
-        notification.notify(
-            title=converted_title,
-            message="R${0} à vista\nR${1} parcelado\n\n{2}".format(converted_price_a_vista, converted_price_parcelado,
-                                                                   URLpichau),
-            app_icon= "images\pichauICO.ico",
-            app_name= "Pichau",
-            timeout=7
-        )
-    elif converted_price_a_vista > 1.400 or converted_price_parcelado > 1.700:
-        print(converted_title, converted_price_parcelado, converted_price_a_vista)
+        if converted_price_a_vista < 1.400 or converted_price_parcelado < 1.700:
+            notification.notify(
+                title=converted_title,
+                message="R${0} à vista\nR${1} parcelado\n\n{2}".format(converted_price_a_vista, converted_price_parcelado,
+                                                                    URLpichau),
+                app_icon= "images\pichauICO.ico",
+                app_name= "Pichau",
+                timeout=7
+                
+            )
+        elif converted_price_a_vista > 1.400 or converted_price_parcelado > 1.700:
+            print(converted_title, "price is not matching")
+            #if out_of_stock:
+            #    print("{0} from pichau is unavailable (out of stock)".format(title))
+    except:
+        pass
 
 while True:
     # GALAX - pichau
