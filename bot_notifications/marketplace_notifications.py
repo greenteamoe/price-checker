@@ -6,14 +6,24 @@ from plyer import notification
 import re
 import json
 import time
+import sys
 from plyer.utils import platform
+from datetime import datetime
+from colorama import init
+from colorama import Fore, Back, Style
+init()
+
 
 headers = {
         "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.60'
     }
 
-print("made by @greenteamoe\nhttps://github.com/greenteamoe\n\nInitializing price checker bot...\n\n")
+count = 0
+current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+print(Fore.CYAN + "made by @greenteamoe\n" + Style.RESET_ALL + "https://github.com/greenteamoe\n")
+print("\nInitializing price checker bot...\n\n")
 time.sleep(1.2)
+print("Current time: " + Fore.LIGHTRED_EX + current_time + Style.RESET_ALL)
 
 def page_request_kabum(url):
     URLkabum = url
@@ -30,9 +40,9 @@ def page_request_kabum(url):
         price_parcelado = soup.find(id=None, attrs={'preco_normal'}).get_text()
         txtstrip_parcelado = price_parcelado.strip()
         converted_price_parcelado = float(txtstrip_parcelado[3:8])
-        juros = soup.find(id=None, attrs={'12x'}).get_text()
-        txtstrip_juros = juros.strip()
-        converted_juros = str(txtstrip_juros[0:41])
+        #juros = soup.find(id=None, attrs={'12x'}).get_text()
+        #txtstrip_juros = juros.strip()
+        #converted_juros = str(txtstrip_juros[0:41])
         if converted_price_a_vista < 1.400 or converted_price_parcelado < 1.700:
             notification.notify(
                 title=converted_title,
@@ -61,7 +71,7 @@ def page_request_pichau(url):
         converted_price_a_vista = float(price_a_vista[11:16])
         price_parcelado = soup.find(id=None, attrs={'price'}).get_text()
         converted_price_parcelado = float(price_parcelado[2:7])
-        out_of_stock = soup.find(id=None, attrs={'stock unavailable'}).get_text()
+        #out_of_stock = soup.find(id=None, attrs={'stock unavailable'}).get_text()
 
         if converted_price_a_vista < 1.400 or converted_price_parcelado < 1.700:
             notification.notify(
@@ -78,21 +88,28 @@ def page_request_pichau(url):
     except:
         pass
 
+count = 1
+
 while True:
     # GALAX - pichau
-  page_request_pichau('https://www.pichau.com.br/hardware/placa-de-video/placa-de-video-galax-geforce-rtx-1660-6gb-gddr5-1-click-oc-192-bit-60srh7dsy91c')
-    # GIGABYTE - pichau
-  page_request_pichau('https://www.pichau.com.br/hardware/placa-de-video/placa-de-video-gigabyte-geforce-gtz-1660-6gb-gddr5-oc-192-bit-gv-n1660oc-6gd')
-    # PCyes - kabum
-  page_request_kabum('https://www.kabum.com.br/produto/130938/placa-de-v-deo-pcyes-nvidia-geforce-gtx-1660-oc-dual-fan-6gb-gddr5-192-bits-graffiti-series-ppoc166019206g5')
-    # Zotac - kabum
-  page_request_kabum('https://www.kabum.com.br/produto/100947/placa-de-v-deo-zotac-nvidia-geforce-gtx-1660-twin-fan-6gb-gddr5-zt-t16600f-10l')
-    # EVGA - kabum
-  page_request_kabum('https://www.kabum.com.br/produto/100930/placa-de-v-deo-evga-nvidia-geforce-gtx-1660-xc-ultra-gaming-6gb-gddr5-06g-p4-1167-kr')
-    # Gigabyte - kabum
-  page_request_kabum('https://www.kabum.com.br/produto/101039/placa-de-v-deo-gigabyte-nvidia-geforce-gtx-1660-oc-6g-gddr5-gv-n1660oc-6gd')
-    # Galax - kabum
-  page_request_kabum('https://www.kabum.com.br/produto/101268/placa-de-v-deo-galax-nvidia-geforce-gtx-1660-1-click-oc-6gb-gddr5-60srh7dsy91c')
-    # EVGA - kabum
-  page_request_kabum('https://www.kabum.com.br/produto/102130/placa-de-v-deo-evga-nvidia-geforce-gtx-1660-sc-ultra-gaming-6gb-gddr5-06g-p4-1067-kr')
-  time.sleep(60 * 60 * 24)
+    page_request_pichau('https://www.pichau.com.br/hardware/placa-de-video/placa-de-video-galax-geforce-rtx-1660-6gb-gddr5-1-click-oc-192-bit-60srh7dsy91c')
+      # GIGABYTE - pichau
+    page_request_pichau('https://www.pichau.com.br/hardware/placa-de-video/placa-de-video-gigabyte-geforce-gtz-1660-6gb-gddr5-oc-192-bit-gv-n1660oc-6gd')
+      # PCyes - kabum
+    page_request_kabum('https://www.kabum.com.br/produto/130938/placa-de-v-deo-pcyes-nvidia-geforce-gtx-1660-oc-dual-fan-6gb-gddr5-192-bits-graffiti-series-ppoc166019206g5')
+      # Zotac - kabum
+    page_request_kabum('https://www.kabum.com.br/produto/100947/placa-de-v-deo-zotac-nvidia-geforce-gtx-1660-twin-fan-6gb-gddr5-zt-t16600f-10l')
+      # EVGA - kabum
+    page_request_kabum('https://www.kabum.com.br/produto/100930/placa-de-v-deo-evga-nvidia-geforce-gtx-1660-xc-ultra-gaming-6gb-gddr5-06g-p4-1167-kr')
+      # Gigabyte - kabum
+    page_request_kabum('https://www.kabum.com.br/produto/101039/placa-de-v-deo-gigabyte-nvidia-geforce-gtx-1660-oc-6g-gddr5-gv-n1660oc-6gd')
+      # Galax - kabum
+    page_request_kabum('https://www.kabum.com.br/produto/101268/placa-de-v-deo-galax-nvidia-geforce-gtx-1660-1-click-oc-6gb-gddr5-60srh7dsy91c')
+      # EVGA - kabum
+    page_request_kabum('https://www.kabum.com.br/produto/102130/placa-de-v-deo-evga-nvidia-geforce-gtx-1660-sc-ultra-gaming-6gb-gddr5-06g-p4-1067-kr')    
+    time.sleep(60 * 60 * 24)
+    count = count + 1
+    print()
+    print(Fore.LIGHTCYAN_EX + "Total price-check cycles: {0}".format(count) + Style.RESET_ALL)
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    print("Current time: " + Fore.LIGHTRED_EX + current_time + Style.RESET_ALL)
