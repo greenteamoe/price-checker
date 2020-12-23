@@ -21,9 +21,10 @@ headers = {
 count = 0
 current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 print(Fore.CYAN + "made by @greenteamoe\n" + Style.RESET_ALL + "https://github.com/greenteamoe\n")
-print("\nInitializing price checker bot...\n\n")
+print("\nInitializing price checker bot..." "\n\n")
 time.sleep(1.2)
-print("Current time: " + Fore.LIGHTRED_EX + current_time + Style.RESET_ALL)
+print("Cycle started at: " + Fore.LIGHTRED_EX + current_time + Style.RESET_ALL)
+print("")
 
 def page_request_kabum(url):
     URLkabum = url
@@ -66,7 +67,7 @@ def page_request_pichau(url):
     soup = BeautifulSoup(page.content, "lxml")  
     try:
         title = soup.find(id=None, attrs={'product title'}).get_text()  
-        converted_title = str(title[0:48])
+        converted_title = str(title[1:48])
         price_a_vista = soup.find(id=None, attrs={'price-boleto'}).get_text()  
         converted_price_a_vista = float(price_a_vista[11:16])
         price_parcelado = soup.find(id=None, attrs={'price'}).get_text()
@@ -84,7 +85,7 @@ def page_request_pichau(url):
                 
             )
         elif converted_price_a_vista > 1.400 or converted_price_parcelado > 1.700:
-            print(converted_title, "[from pichau] price is not matching or is out of stock")
+            print("{0} [from pichau] price is not matching or is out of stock".format(converted_title))
     except:
         pass
 
@@ -106,10 +107,10 @@ while True:
       # Galax - kabum
     page_request_kabum('https://www.kabum.com.br/produto/101268/placa-de-v-deo-galax-nvidia-geforce-gtx-1660-1-click-oc-6gb-gddr5-60srh7dsy91c')
       # EVGA - kabum
-    page_request_kabum('https://www.kabum.com.br/produto/102130/placa-de-v-deo-evga-nvidia-geforce-gtx-1660-sc-ultra-gaming-6gb-gddr5-06g-p4-1067-kr')    
+    page_request_kabum('https://www.kabum.com.br/produto/102130/placa-de-v-deo-evga-nvidia-geforce-gtx-1660-sc-ultra-gaming-6gb-gddr5-06g-p4-1067-kr')
     time.sleep(60 * 60 * 24)
     count = count + 1
     print()
-    print(Fore.LIGHTCYAN_EX + "Total price-check cycles: {0}".format(count) + Style.RESET_ALL)
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    print("Current time: " + Fore.LIGHTRED_EX + current_time + Style.RESET_ALL)
+    print("Cycle restarted at: " + Fore.LIGHTRED_EX + current_time + Style.RESET_ALL)
+    print(Fore.LIGHTCYAN_EX + "Total price-check cycles: {0}\n".format(count) + Style.RESET_ALL)
