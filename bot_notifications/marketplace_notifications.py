@@ -94,7 +94,12 @@ def page_request_pichau(url):
             else:
                 print('{0} [from pichau] is unavailable (out of stock)'.format(converted_title))
         elif converted_price_a_vista > 1.400 or converted_price_parcelado > 1.700:
-            print('{0} [from pichau] is unavailable (price is not matching)'.format(converted_title))
+            if txtstrip_stock == 'Produto indisponível':
+                print("{0} [from pichau] is unavailable (out of stock)".format(converted_title))
+        elif converted_price_a_vista > 1.400 or converted_price_parcelado > 1.700:
+            print("{0} [from pichau] price is not matching")
+        
+        
            
         
     except:
