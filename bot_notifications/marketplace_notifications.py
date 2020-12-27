@@ -2,11 +2,15 @@ import requests
 from bs4 import BeautifulSoup
 import html5lib
 import lxml
+import urllib.request
 from plyer import notification
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 import re
 import json
 import time
 import sys
+from urllib.request import urlopen
 from plyer.utils import platform
 from datetime import datetime
 from colorama import init
@@ -18,6 +22,7 @@ headers = {
     "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.60'
 }
 
+
 count = 0
 current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 print(Fore.CYAN + "made by @greenteamoe\n" + Style.RESET_ALL + "https://github.com/greenteamoe\n")
@@ -26,6 +31,45 @@ time.sleep(1.2)
 print("Cycle started at: " + Fore.LIGHTRED_EX + current_time + Style.RESET_ALL)
 print("")
 
+'''
+def page_request_terabyte(url):
+    CHROMEDRIVER = './chromedriver'
+
+    URLterabyte = url
+
+    title_class = 'tit-prod'
+    price_a_vista_id = 'valVista'
+    #price_parcelado_id = 'valParc'
+    
+    options = Options()
+    options.add_argument#("--headless")
+    options.add_argument('window-size=1920x1080')
+    driver = webdriver.Chrome(CHROMEDRIVER, options=options)
+    driver.get(URLterabyte)
+
+    try:
+        title = driver.find_element_by_class_name(title_class).text
+        converted_title = str(title[0:47])
+        price_a_vista = driver.find_element_by_id(price_a_vista_id).text
+        txtstrip_a_vista = price_a_vista.strip()
+        converted_price_a_vista = float(txtstrip_a_vista[3:8])
+        #price_parcelado = driver.find_element_by_class_name(price_parcelado_id).text
+        #converted_price_parcelado = float(price_parcelado[3:8])
+        if converted_price_a_vista < 1.400:
+            notification.notify(
+                title=converted_title,
+                message="R${0} à vista\n\n{2}".format(converted_price_a_vista, URLterabyte),
+                app_icon="images\terabyteICO.ico",
+                app_name="Terabyte",
+                timeout=7
+            )
+        #elif converted_price_a_vista > 1.400:
+            #print(converted_title, "[from terabyte] is unavailable (price is not matching)")
+
+    except:
+        print(converted_title, "[from terabyte] is unavailable (out of stock)")
+        pass
+'''
 
 def page_request_kabum(url):
     URLkabum = url
@@ -109,6 +153,14 @@ def page_request_pichau(url):
 count = 1
 
 while True:
+    '''
+    # GTX 1660 - PCYES - terabyte
+    page_request_terabyte(
+        'https://www.terabyteshop.com.br/produto/11852/placa-de-video-pcyes-geforce-gtx-1660-dual-6gb-gddr5-192bit-pa166019206g5')
+    # GTX 1660 - GALAX - terabyte
+    page_request_terabyte(
+        'https://www.terabyteshop.com.br/produto/10905/placa-de-video-galax-geforce-gtx-1660-6gb-1-click-oc-60srh7dsy91c-gddr5-pci-exp')
+    '''
     page_request_pichau(
         'https://www.pichau.com.br/hardware/placa-de-video/placa-de-video-galax-geforce-rtx-1660-6gb-gddr5-1-click-oc-192-bit-60srh7dsy91c')
     # GTX 1660 - GIGABYTE - pichau
@@ -135,6 +187,7 @@ while True:
     # GTX 1660 - EVGA - kabum
     page_request_kabum(
         'https://www.kabum.com.br/produto/102130/placa-de-v-deo-evga-nvidia-geforce-gtx-1660-sc-ultra-gaming-6gb-gddr5-06g-p4-1067-kr')
+    
     time.sleep(60 * 60 * 14)
     count = count + 1
     print()
