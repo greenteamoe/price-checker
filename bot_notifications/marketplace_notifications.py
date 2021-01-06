@@ -42,18 +42,19 @@ def page_request_terabyte(url):
     #price_parcelado_id = 'valParc'
     
     options = Options()
+    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36")
+    options.headless = True
     options.add_argument('window-size=1920x1080')
     options.add_argument('--log-level=0')
-    options.add_argument("--disable-gpu")
     options.add_argument("--disable-extensions")
     options.add_argument("--proxy-server='direct://'")
     options.add_argument("--proxy-bypass-list=*")
     options.add_argument("--start-maximized")
-    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument('--no-sandbox')
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
     driver = webdriver.Chrome(CHROMEDRIVER, options=options)
     driver.get(URLterabyte)
-
 
 
     try:
@@ -72,12 +73,15 @@ def page_request_terabyte(url):
                 app_name="Terabyte",
                 timeout=7
             )
-        #elif converted_price_a_vista > 1.400:
-            #print(converted_title, "[from terabyte] is unavailable (price is not matching)")
+        elif converted_price_a_vista > 1.400:
+            print(converted_title, "[from terabyte] is unavailable (price is not matching)")
 
     except:
+        title = driver.find_element_by_class_name(title_class).text
+        converted_title = str(title[0:47])
         print(converted_title, "[from terabyte] is unavailable (out of stock)")
         pass
+        driver.quit()
 
 
 def page_request_kabum(url):
@@ -199,6 +203,6 @@ while True:
     time.sleep(60 * 60 * 14)
     count = count + 1
     print()
-    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    current_time = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
     print("Cycle restarted at: " + Fore.LIGHTRED_EX + current_time + Style.RESET_ALL)
     print(Fore.LIGHTCYAN_EX + "Total price-check cycles: {0}\n".format(count) + Style.RESET_ALL)
