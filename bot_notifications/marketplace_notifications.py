@@ -69,7 +69,7 @@ def page_request_terabyte(url):
             notification.notify(
                 title=converted_title,
                 message="R${0} à vista\n\n{2}".format(converted_price_a_vista, URLterabyte),
-                app_icon="images\terabyteICO.ico",
+                app_icon="images\lojaterabyteICO.ico",
                 app_name="Terabyte",
                 timeout=7
             )
@@ -173,6 +173,7 @@ while True:
     # GTX 1660 - GALAX - terabyte
     page_request_terabyte(
         'https://www.terabyteshop.com.br/produto/10905/placa-de-video-galax-geforce-gtx-1660-6gb-1-click-oc-60srh7dsy91c-gddr5-pci-exp')
+    # GTX 1660 - GALAX - pichau
     page_request_pichau(
         'https://www.pichau.com.br/hardware/placa-de-video/placa-de-video-galax-geforce-rtx-1660-6gb-gddr5-1-click-oc-192-bit-60srh7dsy91c')
     # GTX 1660 - GIGABYTE - pichau
