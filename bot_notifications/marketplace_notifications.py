@@ -24,14 +24,14 @@ headers = {
 
 
 count = 0
-current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+current_time = datetime.now().strftime('%d/%m/%Y at %H:%M:%S')
 print(Fore.CYAN + "made by @greenteamoe\n" + Style.RESET_ALL + "https://github.com/greenteamoe\n")
 print("\nInitializing price checker bot..." "\n\n")
 time.sleep(1.2)
 print("Cycle started at: " + Fore.LIGHTRED_EX + current_time + Style.RESET_ALL)
 print("")
 
-'''
+
 def page_request_terabyte(url):
     CHROMEDRIVER = './chromedriver'
 
@@ -42,10 +42,19 @@ def page_request_terabyte(url):
     #price_parcelado_id = 'valParc'
     
     options = Options()
-    options.add_argument#("--headless")
     options.add_argument('window-size=1920x1080')
+    options.add_argument('--log-level=0')
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--proxy-server='direct://'")
+    options.add_argument("--proxy-bypass-list=*")
+    options.add_argument("--start-maximized")
+    options.add_argument("--headless")
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
     driver = webdriver.Chrome(CHROMEDRIVER, options=options)
     driver.get(URLterabyte)
+
+
 
     try:
         title = driver.find_element_by_class_name(title_class).text
@@ -69,7 +78,7 @@ def page_request_terabyte(url):
     except:
         print(converted_title, "[from terabyte] is unavailable (out of stock)")
         pass
-'''
+
 
 def page_request_kabum(url):
     URLkabum = url
@@ -153,14 +162,13 @@ def page_request_pichau(url):
 count = 1
 
 while True:
-    '''
+    
     # GTX 1660 - PCYES - terabyte
     page_request_terabyte(
         'https://www.terabyteshop.com.br/produto/11852/placa-de-video-pcyes-geforce-gtx-1660-dual-6gb-gddr5-192bit-pa166019206g5')
     # GTX 1660 - GALAX - terabyte
     page_request_terabyte(
         'https://www.terabyteshop.com.br/produto/10905/placa-de-video-galax-geforce-gtx-1660-6gb-1-click-oc-60srh7dsy91c-gddr5-pci-exp')
-    '''
     page_request_pichau(
         'https://www.pichau.com.br/hardware/placa-de-video/placa-de-video-galax-geforce-rtx-1660-6gb-gddr5-1-click-oc-192-bit-60srh7dsy91c')
     # GTX 1660 - GIGABYTE - pichau
