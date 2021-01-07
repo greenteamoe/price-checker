@@ -26,7 +26,9 @@ headers = {
 count = 0
 current_time = datetime.now().strftime('%d/%m/%Y at %H:%M:%S')
 print(Fore.CYAN + "made by @greenteamoe\n" + Style.RESET_ALL + "https://github.com/greenteamoe\n")
-print("\nInitializing price checker bot..." "\n\n")
+print("\nInitializing price checker bot..." "\n")
+print(Style.BRIGHT + "OBS: Requests using SELENIUM, e.g, Terabyte, may take some time." + Style.RESET_ALL)
+print("")
 time.sleep(1.2)
 print("Cycle started at: " + Fore.LIGHTRED_EX + current_time + Style.RESET_ALL)
 print("")
@@ -80,8 +82,9 @@ def page_request_terabyte(url):
         title = driver.find_element_by_class_name(title_class).text
         converted_title = str(title[0:47])
         print(converted_title, "[from terabyte] is unavailable (out of stock)")
-        pass
         driver.quit()
+        pass
+        
 
 
 def page_request_kabum(url):
@@ -166,7 +169,42 @@ def page_request_pichau(url):
 count = 1
 
 while True:
-    
+    # RX 580 - XFX - terabyte
+    page_request_terabyte(
+    'https://www.terabyteshop.com.br/produto/7611/placa-de-video-xfx-radeon-rx-580-8gb-oc-gts-xxx-edition-rx-580p8dfd6-gddr5')
+    # RX 580 BIOSTAR - terabyte
+    page_request_terabyte(
+    'https://www.terabyteshop.com.br/produto/13987/placa-de-video-biostar-radeon-rx-580-8gb-gddr5-256-bit-va5805rv82-tbsrh-bs2')
+    # RX 580 - GIGABYTE - terabyte
+    page_request_terabyte(
+    'https://www.terabyteshop.com.br/produto/7626/placa-de-video-gigabyte-radeon-rx-580-gaming-4g-gv-rx580gaming-4gd-4gb-gddr5')
+    # RX 580 - ASUS - terabyte
+    page_request_terabyte(
+    'https://www.terabyteshop.com.br/produto/7926/placa-de-video-asus-radeon-rx-580-dual-oc-dual-rx580-o8g-8gb-gddr5')
+    # RX 580 - SAPPHIRE - terabyte
+    page_request_terabyte(
+    'https://www.terabyteshop.com.br/produto/7862/placa-de-video-sapphire-radeon-rx-580-pulse-8gb-11265-05-20g-256bit-gddr5-chdmi-pci-exp')
+    # RX 580 - AFOX - terabyte
+    page_request_terabyte(
+    'https://www.terabyteshop.com.br/produto/13050/placa-de-video-radeon-rx-580-8gb-gddr5-256bit-dual-fan-afrx580-8192d5h5')
+    # RX 580 - GIGABYTE - terabyte
+    page_request_terabyte(
+    'https://www.terabyteshop.com.br/produto/7543/placa-de-video-gigabyte-radeon-rx-580-gaming-8g-gv-rx580gaming-8gd-8gb-gddr5')
+    # GTX 1660 - ZOTAC - terabyte
+    page_request_terabyte(
+    'https://www.terabyteshop.com.br/produto/11237/placa-de-video-zotac-geforce-gtx-1660-dual-6gb-gddr5-192bit-zt-t16600f-10l')
+    # GTX 1660 - GALAX - terabyte
+    page_request_terabyte(
+    'https://www.terabyteshop.com.br/produto/12759/placa-de-video-galax-geforce-gtx-1660-super-ex-1-click-oc-dual-6gb-gddr6-192bit-60srl7ds03es')
+    #GTX 1660 - BIOSTAR - terabyte
+    page_request_terabyte(
+    'https://www.terabyteshop.com.br/produto/14471/placa-de-video-biostar-geforce-gtx-1660-dual-6gb-gddr5-192bit-vn1665xf69')
+    #GTX 1660 - COLORFUL - terabyte
+    page_request_terabyte(
+    'https://www.terabyteshop.com.br/produto/12797/placa-de-video-colorful-geforce-gtx-1660-nb-6g-v-dual-6gb-gddr5-192bit')
+    #GTX 1660 - GIGABYTE - terabyte
+    page_request_terabyte(      
+    'https://www.terabyteshop.com.br/produto/10984/placa-de-video-gigabyte-geforce-gtx-1660-oc-6gb-gddr5-pci-exp-gv-n1660oc-6gd')
     # GTX 1660 - PCYES - terabyte
     page_request_terabyte(
         'https://www.terabyteshop.com.br/produto/11852/placa-de-video-pcyes-geforce-gtx-1660-dual-6gb-gddr5-192bit-pa166019206g5')
