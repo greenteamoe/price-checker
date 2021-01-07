@@ -25,7 +25,7 @@ headers = {
 
 count = 0
 current_time = datetime.now().strftime('%d/%m/%Y at %H:%M:%S')
-print(Fore.CYAN + "made by @greenteamoe\n" + Style.RESET_ALL + "https://github.com/greenteamoe\n")
+print("made by " + Fore.LIGHTGREEN_EX + "@greenteamoe\n" + Style.RESET_ALL + "https://github.com/greenteamoe\n")
 print("\nInitializing price checker bot..." "\n")
 print(Style.BRIGHT + "OBS: Requests using SELENIUM, e.g, Terabyte, may take some time." + Style.RESET_ALL)
 print("")
