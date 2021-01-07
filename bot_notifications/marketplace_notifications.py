@@ -67,14 +67,15 @@ def page_request_terabyte(url):
         converted_price_a_vista = float(txtstrip_a_vista[3:8])
         #price_parcelado = driver.find_element_by_class_name(price_parcelado_id).text
         #converted_price_parcelado = float(price_parcelado[3:8])
-        if converted_price_a_vista < 1.400:
+        if converted_price_a_vista > 1.400:
             notification.notify(
                 title=converted_title,
-                message="R${0} à vista\n\n{2}".format(converted_price_a_vista, URLterabyte),
+                message="R${0} à vista\n\n{1}".format(converted_price_a_vista, URLterabyte),
                 app_icon="images\lojaterabyteICO.ico",
                 app_name="Terabyte",
                 timeout=7
             )
+            print(Fore.LIGHTGREEN_EX + "{0} [from terabyte] is available!".format(converted_title) + Style.RESET_ALL)
         elif converted_price_a_vista > 1.400:
             print(converted_title, "[from terabyte] is unavailable (price is not matching)")
 
@@ -84,7 +85,36 @@ def page_request_terabyte(url):
         print(converted_title, "[from terabyte] is unavailable (out of stock)")
         driver.quit()
         pass
-        
+
+
+def page_request_combatinfo(url):
+    URLcombatinfo = url
+
+    page = requests.get(URLcombatinfo, headers=headers)
+    soup = BeautifulSoup(page.content, "lxml")
+
+    
+    try:
+        title = soup.find(id=None, attrs={'col-lg-8'}).get_text()
+        converted_title = str(title[0:59])
+        price_a_vista = soup.find('h4').get_text()  # search for the <h4> html tag
+        txtstrip_a_vista = price_a_vista.strip()
+        converted_price_a_vista = float(txtstrip_a_vista[3:8])
+        if converted_price_a_vista < 1.400:
+            notification.notify(
+                title=converted_title,
+                message="R${0} à vista\n\n{1}".format(converted_price_a_vista,
+                                                                       URLcombatinfo),
+                app_icon="images\combatinfoICO.ico",
+                app_name="CombatInfo",
+                timeout=7
+            )
+            print(Fore.LIGHTGREEN_EX + "{0} [from combatinfo] is available!".format(converted_title) + Style.RESET_ALL)
+        elif converted_price_a_vista > 1.400:
+            print(converted_title, "[from combatinfo] is unavailable (price is not matching)")
+    except:
+        print("{0} [from combatinfo] is unavailable (out of stock)".format(converted_title))
+        pass
 
 
 def page_request_kabum(url):
@@ -115,6 +145,7 @@ def page_request_kabum(url):
                 app_name="Kabum",
                 timeout=7
             )
+            print(Fore.LIGHTGREEN_EX + "{0} [from kabum] is available!".format(converted_title) + Style.RESET_ALL)
         elif converted_price_a_vista > 1.400 or converted_price_parcelado > 1.700:
             print(converted_title, "[from kabum] is unavailable (price is not matching)")
     except:
@@ -169,6 +200,9 @@ def page_request_pichau(url):
 count = 1
 
 while True:
+    # GTX 1660 - PCYES - combatinfo
+    page_request_combatinfo(
+    'https://www.combatinfo.com.br/placa-de-video-pcyes-geforce-gtx-1660-dual-oc-gddr5-6gb-pp1660oc19206g5/783/pr')
     # RX 580 - XFX - terabyte
     page_request_terabyte(
     'https://www.terabyteshop.com.br/produto/7611/placa-de-video-xfx-radeon-rx-580-8gb-oc-gts-xxx-edition-rx-580p8dfd6-gddr5')
