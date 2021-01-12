@@ -11,7 +11,7 @@
 - _pichau_  
 
 ### OBS:
- After running the script, your antivirus software may detect it as malicious, since the bot is meant to visit different URL's (or even  
+ After running the script, your antivirus software may detect it as malicious, since the bot is meant to visit different URL's (or even
   opening your google chrome on the background since some websites needs SELENIUM to extract all the info). So it's highly  
  recommended to turn it off before downloading.
  
