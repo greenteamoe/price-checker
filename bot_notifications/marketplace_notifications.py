@@ -78,12 +78,12 @@ def page_request_terabyte(url):
             )
             print(Fore.LIGHTGREEN_EX + "{0} [from terabyte] is available!".format(converted_title) + Style.RESET_ALL)
         elif converted_price_a_vista > 1.400:
-            print(converted_title, "[from terabyte] is unavailable (price is not matching)")
+            print(Fore.LIGHTRED_EX + converted_title, "[from terabyte] is unavailable (price is not matching)")
 
     except:
         title = driver.find_element_by_class_name(title_class).text
         converted_title = str(title[0:47])
-        print(converted_title, "[from terabyte] is unavailable (out of stock)")
+        print(Fore.LIGHTRED_EX + converted_title, "[from terabyte] is unavailable (out of stock)" + Style.RESET_ALL)
         driver.quit()
         pass
 
@@ -112,9 +112,9 @@ def page_request_combatinfo(url):
             )
             print(Fore.LIGHTGREEN_EX + "{0} [from combatinfo] is available!".format(converted_title) + Style.RESET_ALL)
         elif converted_price_a_vista > 1.400:
-            print(converted_title, "[from combatinfo] is unavailable (price is not matching)")
+            print(Fore.LIGHTRED_EX + converted_title, "[from combatinfo] is unavailable (price is not matching)")
     except:
-        print("{0} [from combatinfo] is unavailable (out of stock)".format(converted_title))
+        print(Fore.LIGHTRED_EX + "{0} [from combatinfo] is unavailable (out of stock)".format(converted_title))
         pass
 
 
@@ -148,9 +148,9 @@ def page_request_kabum(url):
             )
             print(Fore.LIGHTGREEN_EX + "{0} [from kabum] is available!".format(converted_title) + Style.RESET_ALL)
         elif converted_price_a_vista > 1.400 or converted_price_parcelado > 1.700:
-            print(converted_title, "[from kabum] is unavailable (price is not matching)")
+            print(Fore.LIGHTRED_EX + converted_title, "[from kabum] is unavailable (price is not matching)")
     except:
-        print("{0} [from kabum] is unavailable (out of stock)".format(converted_title))
+        print(Fore.LIGHTRED_EX + "{0} [from kabum] is unavailable (out of stock)".format(converted_title))
         pass
 
 
@@ -184,12 +184,12 @@ def page_request_pichau(url):
               )
               print(Fore.LIGHTGREEN_EX + "{0} [from pichau] is available!".format(converted_title) + Style.RESET_ALL)
             else:
-                print('{0} [from pichau] is unavailable (out of stock)'.format(converted_title))
+                print(Fore.LIGHTRED_EX + '{0} [from pichau] is unavailable (out of stock)'.format(converted_title))
         elif converted_price_a_vista > 1.400 or converted_price_parcelado > 1.700:
             if txtstrip_stock == 'Produto indisponível':
-                print("{0} [from pichau] is unavailable (out of stock)".format(converted_title))
+                print(Fore.LIGHTRED_EX + "{0} [from pichau] is unavailable (out of stock)".format(converted_title))
         elif converted_price_a_vista > 1.400 or converted_price_parcelado > 1.700:
-            print("{0} [from pichau] price is not matching")
+            print(Fore.LIGHTRED_EX + "{0} [from pichau] price is not matching")
         
         
            
@@ -211,8 +211,8 @@ while True:
     page_request_terabyte(
     'https://www.terabyteshop.com.br/produto/13987/placa-de-video-biostar-radeon-rx-580-8gb-gddr5-256-bit-va5805rv82-tbsrh-bs2')
     # RX 580 - GIGABYTE - terabyte
-    page_request_terabyte(
-    'https://www.terabyteshop.com.br/produto/7626/placa-de-video-gigabyte-radeon-rx-580-gaming-4g-gv-rx580gaming-4gd-4gb-gddr5')
+    #page_request_terabyte(
+    #'https://www.terabyteshop.com.br/produto/7626/placa-de-video-gigabyte-radeon-rx-580-gaming-4g-gv-rx580gaming-4gd-4gb-gddr5')
     # RX 580 - ASUS - terabyte
     page_request_terabyte(
     'https://www.terabyteshop.com.br/produto/7926/placa-de-video-asus-radeon-rx-580-dual-oc-dual-rx580-o8g-8gb-gddr5')
@@ -259,21 +259,24 @@ while True:
     page_request_kabum(
         'https://www.kabum.com.br/produto/130938/placa-de-v-deo-pcyes-nvidia-geforce-gtx-1660-oc-dual-fan-6gb-gddr5-192-bits-graffiti-series-ppoc166019206g5')
     # GTX 1660 - Zotac - kabum
-    page_request_kabum(
-        'https://www.kabum.com.br/produto/100947/placa-de-v-deo-zotac-nvidia-geforce-gtx-1660-twin-fan-6gb-gddr5-zt-t16600f-10l')
+    #page_request_kabum(
+    #    'https://www.kabum.com.br/produto/100947/placa-de-v-deo-zotac-nvidia-geforce-gtx-1660-twin-fan-6gb-gddr5-zt-t16600f-10l')
     # GTX 1660 - EVGA - kabum
     page_request_kabum(
         'https://www.kabum.com.br/produto/100930/placa-de-v-deo-evga-nvidia-geforce-gtx-1660-xc-ultra-gaming-6gb-gddr5-06g-p4-1167-kr')
     # GTX 1660 - Gigabyte - kabum
-    page_request_kabum(
-        'https://www.kabum.com.br/produto/101039/placa-de-v-deo-gigabyte-nvidia-geforce-gtx-1660-oc-6g-gddr5-gv-n1660oc-6gd')
+    #page_request_kabum(
+    #    'https://www.kabum.com.br/produto/101039/placa-de-v-deo-gigabyte-nvidia-geforce-gtx-1660-oc-6g-gddr5-gv-n1660oc-6gd')
     # GTX 1660 - Galax - kabum
-    page_request_kabum(
-        'https://www.kabum.com.br/produto/101268/placa-de-v-deo-galax-nvidia-geforce-gtx-1660-1-click-oc-6gb-gddr5-60srh7dsy91c')
+    #page_request_kabum(
+    #    'https://www.kabum.com.br/produto/101268/placa-de-v-deo-galax-nvidia-geforce-gtx-1660-1-click-oc-6gb-gddr5-60srh7dsy91c')
     # GTX 1660 - EVGA - kabum
-    page_request_kabum(
-        'https://www.kabum.com.br/produto/102130/placa-de-v-deo-evga-nvidia-geforce-gtx-1660-sc-ultra-gaming-6gb-gddr5-06g-p4-1067-kr')
-    
+    #page_request_kabum(
+    #    'https://www.kabum.com.br/produto/102130/placa-de-v-deo-evga-nvidia-geforce-gtx-1660-sc-ultra-gaming-6gb-gddr5-06g-p4-1067-kr')
+
+    print()
+    print(Style.RESET_ALL + "Next cycle starting in 14 hours.")
+    print()
     time.sleep(60 * 60 * 14)
     count = count + 1
     print()
