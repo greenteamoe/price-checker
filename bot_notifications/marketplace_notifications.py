@@ -6,6 +6,7 @@ import urllib.request
 from plyer import notification
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 import re
 import json
 import time
