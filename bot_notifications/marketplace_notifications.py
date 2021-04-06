@@ -25,7 +25,7 @@ headers = {
 
 
 count = 0
-current_time = datetime.now().strftime('%d/%m/%Y at %H:%M:%S')
+current_time = datetime.now().strftime('%d/%m/%Y at %H:%M')
 print("made by " + Fore.LIGHTGREEN_EX + "@greenteamoe\n" + Style.RESET_ALL + "https://github.com/greenteamoe\n")
 print("\nInitializing price checker bot..." "\n")
 print(Style.BRIGHT + "OBS: Requests using SELENIUM, e.g, Terabyte, may take some time." + Style.RESET_ALL)
@@ -280,6 +280,6 @@ while True:
     time.sleep(60 * 60 * 14)
     count = count + 1
     print()
-    current_time = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+    current_time = datetime.now().strftime('%d/%m/%Y %H:%M')
     print("Cycle restarted at: " + Fore.LIGHTRED_EX + current_time + Style.RESET_ALL)
     print(Fore.LIGHTCYAN_EX + "Total price-check cycles: {0}\n".format(count) + Style.RESET_ALL)
