@@ -68,7 +68,7 @@ def page_request_terabyte(url):
         converted_price_a_vista = float(txtstrip_a_vista[3:8])
         #price_parcelado = driver.find_element_by_class_name(price_parcelado_id).text
         #converted_price_parcelado = float(price_parcelado[3:8])
-        if converted_price_a_vista > 1.400:
+        if converted_price_a_vista < 1.400:
             notification.notify(
                 title=converted_title,
                 message="R${0} à vista\n\n{1}".format(converted_price_a_vista, URLterabyte),
