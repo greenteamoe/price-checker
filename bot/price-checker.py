@@ -8,7 +8,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import re
-import json
 import time
 import sys
 from urllib.request import urlopen
@@ -190,10 +189,6 @@ def page_request_pichau(url):
                 print(Fore.LIGHTRED_EX + "{0} [from pichau] is unavailable (out of stock)".format(converted_title))
         elif converted_price_a_vista > 1.400 or converted_price_parcelado > 1.700:
             print(Fore.LIGHTRED_EX + "{0} [from pichau] price is not matching")
-        
-        
-           
-        
     except:
         pass
 
@@ -256,14 +251,14 @@ while True:
     page_request_pichau(
         'https://www.pichau.com.br/hardware/placa-de-video/placa-de-video-gigabyte-radeon-rx-580-8gb-gddr5-windforce-256-bit-gv-rx580gaming-8gd')
     # GTX 1660 - PCyes - kabum
-    page_request_kabum(
-        'https://www.kabum.com.br/produto/130938/placa-de-v-deo-pcyes-nvidia-geforce-gtx-1660-oc-dual-fan-6gb-gddr5-192-bits-graffiti-series-ppoc166019206g5')
+    #page_request_kabum(
+    #    'https://www.kabum.com.br/produto/130938/placa-de-v-deo-pcyes-nvidia-geforce-gtx-1660-oc-dual-fan-6gb-gddr5-192-bits-graffiti-series-ppoc166019206g5')
     # GTX 1660 - Zotac - kabum
     #page_request_kabum(
     #    'https://www.kabum.com.br/produto/100947/placa-de-v-deo-zotac-nvidia-geforce-gtx-1660-twin-fan-6gb-gddr5-zt-t16600f-10l')
     # GTX 1660 - EVGA - kabum
-    page_request_kabum(
-        'https://www.kabum.com.br/produto/100930/placa-de-v-deo-evga-nvidia-geforce-gtx-1660-xc-ultra-gaming-6gb-gddr5-06g-p4-1167-kr')
+    #page_request_kabum(
+    #    'https://www.kabum.com.br/produto/100930/placa-de-v-deo-evga-nvidia-geforce-gtx-1660-xc-ultra-gaming-6gb-gddr5-06g-p4-1167-kr')
     # GTX 1660 - Gigabyte - kabum
     #page_request_kabum(
     #    'https://www.kabum.com.br/produto/101039/placa-de-v-deo-gigabyte-nvidia-geforce-gtx-1660-oc-6g-gddr5-gv-n1660oc-6gd')
